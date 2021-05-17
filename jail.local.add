@@ -1,0 +1,23 @@
+[named-refused-udp]
+
+enabled   = true
+port      = domain,953
+protocol  = udp
+filter    = named-refused
+action    = iptables-multiport[name=Named, port="domain,953", protocol=udp]
+logpath   = /var/log/YOURLOGFILE | be sure to choose the right logfile on your system for named requests, I don't know your OS yet. :-)
+bantime   = 31536000 | bantime for 1 year
+maxretry  = 10 | the client might try 10 times before the IP gets banned
+
+##########
+
+[named-refused-tcp]
+
+enabled   = true
+port      = domain,953
+protocol  = tcp
+filter    = named-refused
+action    = iptables-multiport[name=Named, port="domain,953", protocol=tcp]
+logpath   = /var/log/YOURLOGFILE | be sure to choose the right logfile on your system for named requests
+bantime   = 31536000 | bantime for 1 year
+maxretry  = 10 | the client might try 10 times before the IP gets banned
